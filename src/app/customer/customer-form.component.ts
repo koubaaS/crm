@@ -56,12 +56,12 @@ export class CustomerFormComponent implements OnInit, AfterViewInit, OnDestroy {
     // Defines all of the validation messages for the form.
     // These could instead be retrieved from a file or database.
     private validationMessages: { [key: string]: { [key: string]: string } | {} } = {
-        firstname: {
+        name: {
             required: 'Customer first name is required.',
             minlength: 'Customer first name must be at least one characters.',
             maxlength: 'Customer first name cannot exceed 100 characters.'
         },
-        lastname: {
+        adress: {
             required: 'Customer last name is required.',
             minlength: 'Customer last name must be at least one characters.',
             maxlength: 'Customer last name cannot exceed 100 characters.'
@@ -71,11 +71,7 @@ export class CustomerFormComponent implements OnInit, AfterViewInit, OnDestroy {
             minlength: 'Customer email must be at least one characters.',
             maxlength: 'Customer email cannot exceed 200 characters.'
         },
-        rewards: {
-            range: 'Rewards of the customer must be between 0 (lowest) and 150 (highest).'
-        },
         phone: { maxlength: 'Customer phone cannot exceed 12 characters.' },
-        mobile: { maxlength: 'Customer mobile cannot exceed 12 characters.' },
     };
 
     constructor(private fb: FormBuilder,
@@ -97,13 +93,10 @@ export class CustomerFormComponent implements OnInit, AfterViewInit, OnDestroy {
 
     ngOnInit(): void {
         this.customerForm = this.fb.group({
-            firstname: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
-            lastname: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
+            name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
+            adress: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
             email: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(200)]],
-            rewards: ['', NumberValidators.range(0, 150)],
             phone: ['', Validators.maxLength(12)],
-            mobile: ['', Validators.maxLength(12)],
-            membership: false,
         });
 
         // Read the customer Id from the route parameter
@@ -149,18 +142,15 @@ export class CustomerFormComponent implements OnInit, AfterViewInit, OnDestroy {
         if (this.customer.id === 0) {
             this.pageTitle = 'New Customer';
         } else {
-            this.pageTitle = `Customer: ${this.customer.firstname} ${this.customer.lastname}`;
+            this.pageTitle = `Customer: ${this.customer.name} ${this.customer.adress}`;
         }
 
         // Update the data on the form
         this.customerForm.patchValue({
-            firstname: this.customer.firstname,
-            lastname: this.customer.lastname,
+            name: this.customer.name,
+            adress: this.customer.adress,
             email: this.customer.email,
-            rewards: this.customer.rewards,
             phone: this.customer.phone,
-            mobile: this.customer.mobile,
-            membership: this.customer.membership
         });
     }
 
@@ -169,13 +159,13 @@ export class CustomerFormComponent implements OnInit, AfterViewInit, OnDestroy {
             // Don't delete, it was never saved.
             this.onSaveComplete();
         } else {
-            if (confirm(`Really delete the customer: ${this.customer.firstname}?`)) {
-                this.customerService.deleteCustomer(this.customer.id)
+        /*    if (confirm(`Really delete the customer: ${this.customer.name}?`)) {
+       (this.customer.id)
                     .subscribe(
                         () => this.onSaveComplete(),
                         (error: any) => this.errorMessage = <any>error
                     );
-            }
+            }*/
         }
     }
 

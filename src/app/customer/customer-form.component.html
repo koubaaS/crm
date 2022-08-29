@@ -22,34 +22,27 @@
     <mat-card-content style="margin: 5 0 5 10px;">
 
     
-      <mat-grid-list cols="12" rowHeight="120px">
-        <mat-grid-tile [colspan]="fieldColspan">
-          <span class="view-label"> 
-            <img mat-card-avatar *ngIf='customer.avatar' class="center-block img-responsive" [src]='customer.avatar'
-              [title]='customer.firstname | uppercase' [style.width.px]='imageWidth' [style.height.px]='imageWidth'  [style.margin.px]='imageMargin'>
-          </span>
-        </mat-grid-tile>
-      </mat-grid-list>
+
       <div class="form-card">
         <mat-grid-list cols="12" rowHeight="80px">
           <mat-grid-tile [colspan]="fieldColspan">
             <!-- colspan="4"> -->
             <mat-form-field class="form-field" appearance="outline">
-              <mat-label>First Name</mat-label>
-              <input matInput id="firstNameId" type="text" placeholder="First Name (required)"
-                formControlName="firstname" />
-              <mat-error *ngIf="displayMessage.firstname">
-                {{displayMessage.firstname}}
+              <mat-label>Name</mat-label>
+              <input matInput id="name" type="text" placeholder="name (required)"
+                formControlName="name" />
+              <mat-error *ngIf="displayMessage.name">
+                {{displayMessage.name}}
               </mat-error>
             </mat-form-field>
           </mat-grid-tile>
           <mat-grid-tile [colspan]="fieldColspan">
             <mat-form-field class="form-field" appearance="outline">
-              <mat-label>Last Name</mat-label>
-              <input matInput id="lastNameId" type="text" placeholder="Last Name (required)"
-                formControlName="lastname" />
-              <mat-error *ngIf="displayMessage.lastname">
-                {{displayMessage.lastname}}
+              <mat-label>Adress</mat-label>
+              <input matInput id="adress" type="text" placeholder="adress (required)"
+                formControlName="adress" />
+              <mat-error *ngIf="displayMessage.adress">
+                {{displayMessage.adress}}
               </mat-error>
             </mat-form-field>
           </mat-grid-tile>
@@ -68,17 +61,8 @@
               <input matInput id="phone" type="text" placeholder="Phone" formControlName="phone" />
             </mat-form-field>
           </mat-grid-tile>
-          <mat-grid-tile [colspan]="fieldColspan">
-            <mat-form-field class="form-field" appearance="outline">
-              <mat-label>Mobile</mat-label>
-              <input matInput id="mobile" type="text" placeholder="Mobile " formControlName="mobile" />
-            </mat-form-field>
-          </mat-grid-tile>
-          <mat-grid-tile [colspan]="fieldColspan">
-            <mat-form-field class="form-field" appearance="outline">
-              <input matInput placeholder="Rewards" id="ageId" type="number" formControlName="rewards" />
-            </mat-form-field>
-          </mat-grid-tile>
+  
+
             <mat-grid-tile [colspan]="fieldColspan">
               <!-- <mat-form-field class="form-field" > -->
                 <!-- <mat-label>Membership</mat-label> -->

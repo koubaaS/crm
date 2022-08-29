@@ -33,7 +33,7 @@ export class CustomerListComponent implements OnInit {
 
     customers: Customer[];
     customerList: Customer[]; //
-    displayedColumns = ["avatar", "firstname", "lastname", "rewards", "email", "membership", "id"];
+    displayedColumns = ["name", "adress",  "email",  "id"];
     dataSource: any = null;
     pager: any = {};
     pagedItems: any[];

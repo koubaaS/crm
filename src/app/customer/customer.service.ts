@@ -17,35 +17,23 @@ export class CustomerService {
   constructor(private http: HttpClient, private backend: BackendService) { }
 
   getCustomers(): Observable<Customer[]> {
-    return this.backend.getAll(this.basicAction)
-      .map(this.extractData)
-      .catch(this.handleError);
+    return this.http.get<Customer[]>('http://localhost:8080/restaurant');
   }
 
   getCustomer(id: number): Observable<Customer> {
-    if (id === 0) {
-      return Observable.of(this.initializeCustomer());
-    };
-    const action = `${this.basicAction}${id}`;
-    return this.backend.getById(action)
-      .map(this.extractData)
-      .catch(this.handleError);
+    return this.http.get<Customer>(`http://localhost:8080/restaurant/${id}`);
   }
-
+/*
   deleteCustomer(id: number): Observable<Response> {
 
-    const action = `${this.basicAction}${id}`;
-    return this.backend.delete(action)
-      .catch(this.handleError);
+
+  return this.http.delete(`http://localhost:8080/restaurant/${id}`);
+
   }
-
+*/
   saveCustomer(customer: Customer): Observable<Customer> {
+    return this.http.post<Customer>('http://localhost:8080/restaurant', customer);
 
-
-    if (customer.id === 0) {
-      return this.createCustomer(customer);
-    }
-    return this.updateCustomer(customer);
   }
 
   private createCustomer(customer: Customer): Observable<Customer> {
@@ -78,13 +66,9 @@ export class CustomerService {
     // Return an initialized object
     return {
       id: 0,
-      avatar: null,
-      firstname: null,
-      lastname: null,
-      rewards: 0,
+      name: null,
+      adress: null,
       email: null,
-      membership: false,
-      mobile: null,
       phone:null
     };
   }

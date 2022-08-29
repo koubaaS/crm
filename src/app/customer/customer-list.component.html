@@ -29,41 +29,17 @@
   </mat-toolbar>
 
   <mat-table #table [dataSource]="dataSource" matSort>
-    <ng-container matColumnDef="avatar">
-      <mat-header-cell *matHeaderCellDef></mat-header-cell>
-      <mat-cell *matCellDef="let customer">
-        <!-- <a [routerLink]="['/customer', customer.id]"> -->
-        <img *ngIf='customer.avatar' [src]='customer.avatar' [title]='customer.firstname | uppercase'
-          [style.width.px]='imageWidth' [style.margin.px]='imageMargin'>
-        <!-- </a> -->
-      </mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="firstname">
+    <ng-container matColumnDef="name">
       <mat-header-cell *matHeaderCellDef mat-sort-header> First Name </mat-header-cell>
-      <mat-cell *matCellDef="let customer"> {{customer.firstname}} </mat-cell>
+      <mat-cell *matCellDef="let customer"> {{customer.name}} </mat-cell>
     </ng-container>
-    <ng-container matColumnDef="lastname">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Last Name </mat-header-cell>
-      <mat-cell *matCellDef="let customer"> {{customer.lastname}} </mat-cell>
+    <ng-container matColumnDef="adress">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> adress </mat-header-cell>
+      <mat-cell *matCellDef="let customer"> {{customer.adress}} </mat-cell>
     </ng-container>
     <ng-container matColumnDef="email">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
       <mat-cell *matCellDef="let customer"> {{customer.email}} </mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="rewards">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Rewards </mat-header-cell>
-      <mat-cell *matCellDef="let customer"> {{customer.rewards | number }} </mat-cell>
-    </ng-container>
-    <ng-container matColumnDef="membership">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Membershiop</mat-header-cell>
-      <mat-cell *matCellDef="let customer">
-        <span *ngIf="!customer.membership" style="color:green">
-          <mat-icon>check_circle</mat-icon>
-        </span>
-        <span *ngIf="customer.membership" style="color:darkgrey">
-          <mat-icon>highlight_off</mat-icon>
-        </span>
-      </mat-cell>
     </ng-container>
     <ng-container matColumnDef="id">
       <mat-header-cell *matHeaderCellDef style="justify-content:right;">
@@ -88,16 +64,6 @@
 </mat-card>
 
 <mat-sidenav class="search-panel" position="end" dark #sidenav mode="push" opened="false">
-  <mat-card class="profile-card">
-    <mat-card-header>
-      <div mat-card-avatar class="avatar">
-        <mat-icon>search</mat-icon>
-      </div>
-      <mat-card-title>
-        Advanced Search
-      </mat-card-title>
-    </mat-card-header>
-  </mat-card>
   <mat-nav-list style="margin-left:50px;">
     <mat-form-field appearance="standard">
       <mat-label>First Name</mat-label>
