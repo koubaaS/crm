@@ -141,7 +141,7 @@ export class CustomerListComponent implements OnInit {
             this.selectedOption = result;
 
             if (this.selectedOption === dialogRef.componentInstance.ACTION_CONFIRM) {
-                this.customerService.deleteCustomer(id).subscribe(
+                this.customerService.getCustomer(id).subscribe(
                     () => {
                         this.customerService.getCustomers()
                             .subscribe(customers => {

@@ -64,7 +64,7 @@ export class OrderListComponent implements OnInit {
     this.orders = orders;
     this.orderList = orders.map(e => {
       let order = e;
-      e["customerName"] = e.customer.firstname + " " + e.customer.lastname;
+      e["customerName"] = e.customer.name + " " + e.customer.name;
       return order;
     });
     this.totalAmount = this.orders.length;
